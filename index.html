@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tray Info Window</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tray Info Window</h1>
+  <div id="tray-info"></div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // Обновление информации при получении сообщения от main.js
+    ipcRenderer.on('update-tray-info', (event, { imageBase64, contextMenu }) => {
+      const trayInfoDiv = document.getElementById('tray-info');
+
+      // Очищаем содержимое перед обновлением
+      trayInfoDiv.innerHTML = '123';
+
+      // Пример отображения изображения иконки трея
+      if (imageBase64) {
+        const imgElement = document.createElement('img');
+        imgElement.src = imageBase64;
+        trayInfoDiv.appendChild(imgElement);
+      }
+
+      // Пример отображения контекстного меню
+      if (contextMenu) {
+        const ulElement = document.createElement('ul');
+        contextMenu.items.forEach(item => {
+          const liElement = document.createElement('li');
+          liElement.textContent = item.label;
+          ulElement.appendChild(liElement);
+        });
+        trayInfoDiv.appendChild(ulElement);
+      }
+    });
+      // Пример отображения контекстного меню
+      if (contextMenu) {
+        const ulElement = document.createElement('ul');
+        contextMenu.items.forEach(item => {
+          const liElement = document.createElement('li');
+          liElement.textContent = item.label;
+          ulElement.appendChild(liElement);
+        });
+        trayInfoDiv.appendChild(ulElement);
+      }
+    });
+
+    // Пример отправки запроса на получение информации о трее
+    ipcRenderer.invoke('get-tray-info').then((response) => {
+      console.log('Tray info:', response);
+    }).catch((error) => {
+      console.error('Error getting tray info:', error);
+    });
+  </script>
+</body>
+</html>
