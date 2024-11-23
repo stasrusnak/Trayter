@@ -20,9 +20,7 @@ function createWindow() {
   });
 } 
 app.on('ready', () => {
-  createWindow();
-
-  // Создание иконки в трее
+  createWindow(); 
   captureTrayIcons();
 });
 
