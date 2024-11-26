@@ -49,7 +49,6 @@ function captureTrayIcons() {
 
     tray.setToolTip('My Electron App');
     tray.setContextMenu(contextMenu);
-
     // Обработка двойного щелчка по иконке трея
     tray.on('double-click', () => mainWindow.show());
   }).catch((err) => {
