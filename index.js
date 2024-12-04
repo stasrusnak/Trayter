@@ -29,7 +29,8 @@ function captureTrayIcons() {
     const imageBase64 = `data:image/png;base64,${img.toString('base64')}`;
     const iconImage = nativeImage.createFromDataURL(imageBase64);
 
-    // Удалить предыдущую иконку трея, если она была создана ранее
+    // Удалить предыдущую иконку трея, 
+    // если она была создана ранее
     if (tray) {
       tray.destroy();
     }
