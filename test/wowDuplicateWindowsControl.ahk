@@ -78,8 +78,7 @@ $MButton::
                 MouseMove, %mx%, %my%, 0
                 break
             }
-        }
-
+        } 
         ; Нажимаем и в текущем окне
         Click Middle
     }
